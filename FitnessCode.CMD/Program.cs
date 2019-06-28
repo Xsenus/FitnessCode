@@ -1,16 +1,21 @@
 ﻿using FitnessCode.BL.Controller;
 using FitnessCode.BL.Model;
 using System;
+using System.Globalization;
+using System.Resources;
 
 namespace FitnessCode.CMD
 {
     class Program
     {
         static void Main(string[] args)
-        {
-            Console.WriteLine("Вас приветствует приложения FitnessCode.");
+        {            
+            var culture = CultureInfo.CreateSpecificCulture("ru-ru");
+            var resourceManager = new ResourceManager("FitnessCode.CMD.Language.Messages", typeof(Program).Assembly);
 
-            Console.WriteLine("Введите имя пользователя:");
+            Console.WriteLine(resourceManager.GetString("Hello", culture));
+
+            Console.WriteLine(resourceManager.GetString("EnterName", culture));
             var name = Console.ReadLine();
 
             var userController = new UserController(name);

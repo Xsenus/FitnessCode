@@ -43,6 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Language\Messages.en-us.Designer.cs">
+      <DependentUpon>Messages.en-us.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Language\Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Language\Messages.ru-ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.ru-ru.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,6 +69,20 @@
       <Project>{18f2d7ce-20b1-46b0-ba57-6b4d5a6ac93c}</Project>
       <Name>FitnessCode.BL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Language\Messages.en-us.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Language\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Language\Messages.ru-ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.ru-ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
