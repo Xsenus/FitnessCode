@@ -18,12 +18,12 @@ namespace FitnessCode.BL.Model
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime BirthDate { get; }
+        public DateTime BirthDate { get; set; }
 
         /// <summary>
         /// Вес.
@@ -34,6 +34,19 @@ namespace FitnessCode.BL.Model
         /// Рост.
         /// </summary>
         public double Heiht { get; set; }
+
+        /*
+         * Реализация возраста
+         * 
+         * DateTime nowDate = DateTime.Today;
+         * int age = nowDate.Year - birthDate.Year;
+         * if (birthDate > now.Date.AddYears(-age)) age--;
+         */
+
+        /// <summary>
+        /// Возраст.
+        /// </summary>
+        public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
 
         #endregion
 
@@ -87,9 +100,19 @@ namespace FitnessCode.BL.Model
             Heiht = heiht;
         }
 
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Имя пользователя не может быть пустым или null.", nameof(name));
+            }
+
+            Name = name;
+        }
+
         public override string ToString()
         {
-            return Name;
+            return $"{Name} {Age}";
         }
     }
 }
