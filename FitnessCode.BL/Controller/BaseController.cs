@@ -1,36 +1,27 @@
-﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using FitnessCode.BL.Interface;
+using System.Collections.Generic;
 
 namespace FitnessCode.BL.Controller
 {
     public class BaseController
     {
-        protected void Save(string fileName, object item)
-        {
-            var formatter = new BinaryFormatter();
+        private readonly IDataSaver manager = new DatabaseSaver();
 
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, item);
-            }
+        protected void Save<T>(List<T> item) where T : class
+        {
+            manager.Save(item);
         }
 
-        protected T Load<T>(string fileName)
-        {
-            var formatter = new BinaryFormatter();
+        //protected void Save<T>(List<T> item, IDataSaver dataSaver) where T : class
+        //{
+        //    dataSaver.Save(item);
 
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0 && formatter.Deserialize(fs) is T items)
-                {
-                    return items;
-                }
-                else
-                {
-                    return default(T);
-                }
-            }
+        //    manager.Save(item);
+        //}
+
+        protected List<T> Load<T>() where T : class
+        {
+            return manager.Load<T>();
         }
     }
 }

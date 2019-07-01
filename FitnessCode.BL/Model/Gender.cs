@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FitnessCode.BL.Model
 {
@@ -8,10 +9,13 @@ namespace FitnessCode.BL.Model
     [Serializable]
     public class Gender
     {
+        public int Id { get; set; }
         /// <summary>
         /// Название.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
 
         /// <summary>
         /// Создать новый пол.
@@ -26,6 +30,8 @@ namespace FitnessCode.BL.Model
 
             Name = name;
         }
+
+        public Gender() { }
 
         public override string ToString()
         {

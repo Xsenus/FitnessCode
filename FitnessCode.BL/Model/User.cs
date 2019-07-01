@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FitnessCode.BL.Model
 {
@@ -8,22 +9,27 @@ namespace FitnessCode.BL.Model
     [Serializable]
     public class User
     {
+
         #region Свойства
+
+        public int Id { get; set; }
 
         /// <summary>
         /// Имя.
         /// </summary>
-        public string  Name { get; }
+        public string  Name { get; set; }
+
+        public int? GenderId { get; set; }
 
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender Gender { get; set; }
+        public virtual Gender Gender { get; set; }
 
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; } = DateTime.Now;
 
         /// <summary>
         /// Вес.
@@ -35,6 +41,8 @@ namespace FitnessCode.BL.Model
         /// </summary>
         public double Heiht { get; set; }
 
+        public virtual ICollection<Eating> Eatings { get; set; }
+        public virtual ICollection<Exercise> Exercises { get; set; }
         /*
          * Реализация возраста
          * 
@@ -109,6 +117,8 @@ namespace FitnessCode.BL.Model
 
             Name = name;
         }
+
+        public User() { }
 
         public override string ToString()
         {

@@ -13,9 +13,6 @@ namespace FitnessCode.BL.Controller
         public List<Exercise> Exercises { get; }
         public List<Activity> Activities { get; }
 
-        private const string EXERCISE_FILE_NAME = "exercise.dat";
-        private const string ACTIVITIES_FILE_NAME = "activities.dat";
-
         public ExerciseController(User user)
         {
             this.user = user ?? throw new ArgumentNullException(nameof(user));
@@ -26,7 +23,7 @@ namespace FitnessCode.BL.Controller
 
         private List<Activity> GetAllActivities()
         {
-            return Load<List<Activity>>(ACTIVITIES_FILE_NAME) ?? new List<Activity>();
+            return Load<Activity>() ?? new List<Activity>();
         }
 
         public void Add(Activity activity, DateTime start, DateTime finish)
@@ -50,13 +47,13 @@ namespace FitnessCode.BL.Controller
 
         private List<Exercise> GetAllExercises()
         {
-            return Load<List<Exercise>>(EXERCISE_FILE_NAME) ?? new List<Exercise>();
+            return Load<Exercise>() ?? new List<Exercise>();
         }
 
         private void Save()
         {
-            Save(EXERCISE_FILE_NAME, Exercises);
-            Save(ACTIVITIES_FILE_NAME, Activities);
+            Save(Exercises);
+            Save(Activities);
         }
     }
 }
